@@ -1,0 +1,105 @@
+{
+	"name": "FormulaOne-TransformationDataSet",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Ingestion Pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "FormulaOne-IngestionDataSet",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Transformation race_results",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Execute Ingestion Pipeline",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/patricknguyen84@outlook.com/transformation/construct table race_result"
+				},
+				"linkedServiceName": {
+					"referenceName": "FormulaOneProject",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transformation driver_standings",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Transformation race_results",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/patricknguyen84@outlook.com/transformation/construct table driver_standings"
+				},
+				"linkedServiceName": {
+					"referenceName": "FormulaOneProject",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Transformation constructor_standings",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Transformation race_results",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/patricknguyen84@outlook.com/transformation/construct tableconstructor_standings"
+				},
+				"linkedServiceName": {
+					"referenceName": "FormulaOneProject",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"concurrency": 1,
+		"annotations": [],
+		"lastPublishTime": "2023-06-03T18:33:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

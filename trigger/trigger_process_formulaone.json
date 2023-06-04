@@ -1,0 +1,25 @@
+{
+	"name": "trigger_process_formulaone",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "FormulaOne-TransformationDataSet",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 168,
+				"startTime": "2023-06-03T15:00:00",
+				"endTime": "2023-06-17T18:34:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"name": "FormulaOneProject",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-4109359691511915.15.azuredatabricks.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/e1e02e29-2a95-41a2-b1cb-2c5ece5597ba/resourceGroups/formulaoneproject-rg/providers/Microsoft.Databricks/workspaces/formulaoneproject",
+			"existingClusterId": "0602-153024-2ck0e2mv"
+		}
+	}
+}
